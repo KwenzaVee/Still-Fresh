@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 **Welcome to your Base44 project** 
 
 **About**
@@ -38,3 +39,7 @@ Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.
 
 Support: [https://app.base44.com/support](https://app.base44.com/support)
 
+=======
+# Still-Fresh
+Still Fresh is a revolutionary mobile application that tackles the pressing issue of food waste, with far-reaching benefits for the environment, society, and the economy. By connecting consumers with surplus food from retailers, wholesalers, and manufacturers, we aim to reduce food waste, alleviate poverty, and promote sustainability.
+>>>>>>> b95550360ec435bf02ddebcc23cd0cd77100d1f9
