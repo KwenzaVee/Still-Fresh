@@ -1,5 +1,8 @@
+import { isSupabaseConfigured, supabase } from "@/lib/supabase";
+
 const ORDERS_KEY = "stillfresh_orders";
 const USER_KEY = "stillfresh_user";
+const useSupabase = import.meta.env.VITE_DATA_SOURCE === "supabase" && isSupabaseConfigured;
 
 const readJson = (key, fallback) => {
   try {
@@ -29,6 +32,16 @@ const ensureUser = () => {
 };
 
 const createOrder = async (payload) => {
+  if (useSupabase) {
+    const { data, error } = await supabase
+      .from("orders")
+      .insert(payload)
+      .select("*")
+      .single();
+    if (error) throw error;
+    return data;
+  }
+
   const orders = readJson(ORDERS_KEY, []);
   const created = {
     id: crypto.randomUUID ? crypto.randomUUID() : `order_${Date.now()}`,
@@ -41,6 +54,16 @@ const createOrder = async (payload) => {
 };
 
 const listOrders = async (_sort = "-created_date", limit = 20) => {
+  if (useSupabase) {
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(limit);
+    if (error) throw error;
+    return data || [];
+  }
+
   const orders = readJson(ORDERS_KEY, []);
   return orders.slice(0, limit);
 };

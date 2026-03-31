@@ -6,19 +6,22 @@ import { Search, Bell, MapPin, Leaf } from "lucide-react";
 import HeroBanner from "../components/home/Herobanner";
 import CategoryPill from "../components/home/CategoryPill";
 import StoreCard from "../components/home/StoreCard";
-import { MOCK_STORES, CATEGORIES } from "../components/shared/mockData";
+import { CATEGORIES } from "../components/shared/mockData";
+import { listStores } from "@/lib/store-service";
 
 export default function Home() {
   const [user, setUser] = useState(null);
+  const [stores, setStores] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     base44.auth.me().then(setUser).catch(() => {});
+    listStores().then(setStores).catch(() => setStores([]));
   }, []);
 
-  const filtered = MOCK_STORES.filter((s) => {
+  const filtered = stores.filter((s) => {
     const matchCat = activeCategory === "All" || s.category === activeCategory;
     const matchSearch =
       !searchQuery ||

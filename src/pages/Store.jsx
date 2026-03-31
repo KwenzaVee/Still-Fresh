@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { ArrowLeft, Star, MapPin, Clock, Leaf, ShoppingBag, Minus, Plus, Info } from "lucide-react";
-import { MOCK_STORES } from "../components/shared/mockData";
+import { getStoreById } from "@/lib/store-service";
 
 export default function Store() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
-  const store = MOCK_STORES.find((s) => s.id === id) || MOCK_STORES[0];
-
+  const [store, setStore] = useState(null);
   const [qty, setQty] = useState(1);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getStoreById(id).then(setStore).catch(() => setStore(null));
+  }, [id]);
+
+  if (!store) {
+    return <div className="min-h-screen bg-[#FAFAF8]" />;
+  }
 
   const handleReserve = () => {
     const order = {
