@@ -1,0 +1,65 @@
+{
+  "name": "Store",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Bakery",
+        "Restaurant",
+        "Supermarket",
+        "Cafe",
+        "Deli"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "banner_url": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number"
+    },
+    "distance_km": {
+      "type": "number"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "bag_price": {
+      "type": "number"
+    },
+    "bags_available": {
+      "type": "number"
+    },
+    "pickup_start": {
+      "type": "string"
+    },
+    "pickup_end": {
+      "type": "string"
+    },
+    "bag_description": {
+      "type": "string"
+    },
+    "food_saved_kg": {
+      "type": "number"
+    },
+    "is_active": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}

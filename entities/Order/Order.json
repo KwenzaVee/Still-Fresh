@@ -1,0 +1,59 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "store_name": {
+      "type": "string"
+    },
+    "store_image": {
+      "type": "string"
+    },
+    "store_category": {
+      "type": "string"
+    },
+    "bag_price": {
+      "type": "number"
+    },
+    "quantity": {
+      "type": "number"
+    },
+    "total_amount": {
+      "type": "number"
+    },
+    "commission": {
+      "type": "number"
+    },
+    "pickup_start": {
+      "type": "string"
+    },
+    "pickup_end": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Reserved",
+        "Collected",
+        "Cancelled"
+      ],
+      "default": "Reserved"
+    },
+    "pickup_date": {
+      "type": "string"
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "order_code": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "store_id",
+    "store_name",
+    "bag_price"
+  ]
+}
